@@ -8,8 +8,21 @@ Analyze any Instagram username from a list — is the account alive, does it loo
 ![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey.svg)
 ![UI](https://img.shields.io/badge/UI-Tkinter-yellow.svg)
 
+## 📸 What it looks like
+
 <p align="center">
   <img src="docs/screenshots/01-app.png" alt="Instagram Profile Checker — sign in, build the list, results table" width="95%">
+</p>
+<p align="center">
+  <img src="docs/screenshots/03-results.png" alt="Results table mid-run — colored verdicts, progress bar, per-row error details" width="95%">
+</p>
+<p align="center">
+  <img src="docs/screenshots/04-scrape.png" alt="Build-the-list panel — target, scrape, usernames box, mode and speed" width="32%">
+&nbsp;
+  <img src="docs/screenshots/05-summary.png" alt="Run finished — verdict tally: likely-fake, suspicious, inactive, dead, fine, not checkable" width="30%">
+</p>
+<p align="center">
+  <img src="docs/screenshots/02-signin.png" alt="Sign-in panel — username, password, 2FA code, or Session ID with How? guide" width="95%">
 </p>
 
 ## The verdict column
@@ -23,10 +36,6 @@ Analyze any Instagram username from a list — is the account alive, does it loo
 | `fine` | everything else |
 
 Rows are colored by verdict in the table. A row whose check **failed** carries no verdict — only a status and the error.
-
-<p align="center">
-  <img src="docs/screenshots/03-results.png" alt="Results table mid-run — colored verdicts, progress bar, per-row error details" width="95%">
-</p>
 
 ## What you get per account
 
@@ -79,10 +88,6 @@ Two signed-out paths, chosen automatically per run:
 
 ### Session mode — full data
 
-<p align="center">
-  <img src="docs/screenshots/02-signin.png" alt="Sign-in panel — username, password, 2FA code, or Session ID with How? guide" width="95%">
-</p>
-
 Signs in and gets everything visible to your account, including private profiles you follow and the Last Post date. This spends **your account's** rate budget.
 
 - Sign in with username + password; if Instagram asks for a 2FA code, enter it in the **2FA code** field and press **Sign In** again.
@@ -93,10 +98,6 @@ Signs in and gets everything visible to your account, including private profiles
 ## Follower audit
 
 Type a **target username**, pick **Following** or **Followers**, and click **Scrape followers →**. The list lands in the username box (200 per page, live progress, Stop works between pages). Then:
-
-<p align="center">
-  <img src="docs/screenshots/04-scrape.png" alt="Build-the-list panel — target, scrape, usernames box, mode and speed" width="360px">
-</p>
 
 - **Extract usernames only** — tick the checkbox first: you get just the list in the box (copy it, save it, check it later); no analysis performed.
 - **Full audit** (default) — every follower is checked through the normal pipeline automatically.
@@ -124,12 +125,6 @@ Follower lists only come from the signed-in API: the button is disabled without 
 - **Circuit breaker:** when several consecutive lookups are refused with nothing succeeding in between, the run **halts with an explanation** instead of retrying through it — sustained retry traffic is exactly what escalates to an action block. Wait 15–60 minutes, then resume from the checkpoint.
 - The username box itself is saved too (`pending_names.txt`): a crash or block mid-scrape never costs you the extracted names, and closing the window saves the box plus every checked row.
 - **Last Post** costs one extra request per account (Session mode) — untick it for the fastest run; alive/DP/counts are unaffected.
-
-Every finished run ends with a verdict summary:
-
-<p align="center">
-  <img src="docs/screenshots/05-summary.png" alt="Run finished — verdict tally: likely-fake, suspicious, inactive, dead, fine, not checkable" width="340px">
-</p>
 
 ## Notes & limits
 
