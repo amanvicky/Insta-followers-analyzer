@@ -982,9 +982,12 @@ class App(tk.Tk):
         values = self.tree.item(row, "values")
         result = next((r for r in self.results if r.username == values[0]), None)
         if result and result.profile_pic_url:
-            self.clipboard_clear()
-            self.clipboard_append(result.profile_pic_url)
-            self._append_log(f"Copied DP URL for @{result.username}.")
+            # Clipboard writes disabled (bug fix): clearing/appending here
+            # silently destroyed whatever the user had copied system-wide.
+            # The DP URL stays visible in the row; copy it manually if needed.
+            # self.clipboard_clear()
+            # self.clipboard_append(result.profile_pic_url)
+            self._append_log(f"DP URL for @{result.username} is shown in the row (clipboard copy disabled).")
         else:
             status = values[9] if len(values) > 9 else "unknown"
             self._append_log(f"No DP URL available for @{values[0]} ({status}).")
