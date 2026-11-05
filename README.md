@@ -150,7 +150,3 @@ insta_checker/
     test_public_lookup.py  # signed-out payload mapping
     test_app.py            # headless Tk tests: file loading, summaries, scrape box
 ```
-
-## Related
-
-- [instagram-followers-scraper](https://github.com/amanvicky/instagram-followers-scraper) — the sign-in-free sibling: collect public follower/following lists in a browser UI and export to Excel.
